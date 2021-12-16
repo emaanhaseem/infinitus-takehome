@@ -1,7 +1,7 @@
 # Take Home Assessment
 
 This application contains a singular page.
-Each page should display Accordion/Dropdown components per AI category available via the API endpoint.
+The page should display Accordion/Dropdown components per AI category available via the API endpoint.
 When clicking on the endpoint, the component will expand to reveal capability cards accompanied by a corresponding switch indicating enabled status!
 The text also corresponds to enabled status: if disabled the text will be gray, otherwise black.
 
