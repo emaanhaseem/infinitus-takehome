@@ -3,6 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
 
 
@@ -12,13 +13,37 @@ function App() {
        <CssBaseline />
        <AppBar position="relative">
         <Toolbar>
-          {/* <CameraIcon sx={{ mr: 2 }} /> */}
           <Typography variant="h6" color="inherit" noWrap>
-            AI Capabilities
+            Infinitus Systems
           </Typography>
         </Toolbar>
       </AppBar>
-      <GroupCategories />
+      <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="text.primary"
+              gutterBottom
+            >
+              Infinitus System's
+            </Typography>
+            <Typography
+              component="h3"
+              variant="h3"
+              align="center"
+              color="text.primary"
+              gutterBottom
+            >
+              AI Capabilities
+            </Typography>
+            <Typography variant="h5" align="center" color="text.secondary" paragraph>
+              
+            </Typography>
+          </Container>
+          <Container maxWidth="md">
+            <GroupCategories />
+          </Container>
     </div>
   );
 }

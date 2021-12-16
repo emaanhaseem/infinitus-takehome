@@ -5,8 +5,10 @@ import axios from 'axios'
 
 export default function GroupCategories() {
     const [data, setData] = useState([])
-    const [categories, setCategories] = useState(new Map())
+    const [categoryGroups, setCategoryGroups] = useState(new Map())
     const [loadingData, setLoadingData] = useState(false);
+    const [loadingCategories, setLoadingCategories] = useState(false);
+    const [categories, setCategories] = useState([])
 
     useEffect(() => {
         const getData = async() => { 
@@ -22,27 +24,34 @@ export default function GroupCategories() {
 
     useEffect(() => {
         const parseCategories = () => {
-            var tempCategories = new Map()
+            var tempCategoryGroups = new Map()
+            var tempCategories = new Set()
             data.forEach((elem) => {
                 var category = elem["category"]
-                console.log("CATEGORY " + category)
-                tempCategories[category] = tempCategories[category] || []
-                tempCategories[category].push(elem);
-
+                tempCategoryGroups[category] = tempCategoryGroups[category] || []
+                tempCategoryGroups[category].push(elem);
+                tempCategories.add(category)
             });
 
-            setCategories(tempCategories)
+            setCategoryGroups(tempCategoryGroups)
+            setCategories(Array.from(tempCategories))
         }
         if(!loadingData) {
+            setLoadingCategories(true)
             parseCategories();
+            setLoadingCategories(false)
         }
     }, [loadingData])
 
     return ( 
         <div>
-            <DropdownCategories
-                data={categories}
-            />
+            {loadingCategories || loadingData ? (<p>loading</p>) :
+                <DropdownCategories
+                        data={categoryGroups}
+                        keys={categories}
+                    />
+            }
+            
         </div>
     );
   }
