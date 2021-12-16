@@ -2,6 +2,12 @@ import DropdownCategories from './DropdownCategories'
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
+/*
+
+Groups all AI capabilities by categories in "categoryGroups"
+Sends this data to DropDownCategories to format and display
+
+*/
 
 export default function GroupCategories() {
     const [data, setData] = useState([])
@@ -10,6 +16,7 @@ export default function GroupCategories() {
     const [loadingCategories, setLoadingCategories] = useState(false);
     const [categories, setCategories] = useState([])
 
+    //API call refreshes upon render. 
     useEffect(() => {
         const getData = async() => { 
             setLoadingData(true);
@@ -22,6 +29,7 @@ export default function GroupCategories() {
         getData();
     }, [])
 
+    //When data has fully loaded, organize groups by category
     useEffect(() => {
         const parseCategories = () => {
             var tempCategoryGroups = new Map()
@@ -33,7 +41,7 @@ export default function GroupCategories() {
                 tempCategories.add(category)
             });
 
-            setCategoryGroups(tempCategoryGroups)
+            setCategoryGroups(tempCategoryGroups) 
             setCategories(Array.from(tempCategories))
         }
         if(!loadingData) {
@@ -43,6 +51,7 @@ export default function GroupCategories() {
         }
     }, [loadingData])
 
+    //display "loading" if data is not ready yet
     return ( 
         <div>
             {loadingCategories || loadingData ? (<p>loading</p>) :

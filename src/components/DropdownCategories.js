@@ -4,18 +4,23 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
-export default function DropdownCategories({ data, keys }) {
+
+/*
+
+Generate an accordion dropdown group per category
     
+*/
+
+//checks if we have received data before processing, otherwise we load
+export default function DropdownCategories({ data, keys }) {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
         if(data != null && data["NLP"] != null && keys != null) {
-            data["NLP"].map(elem => {
-                console.log(JSON.stringify(elem["category"]))
-            }) 
-            console.log(JSON.stringify(data["NLP"]))
             setLoading(false)
         }
     }, [data, keys])
@@ -26,9 +31,15 @@ export default function DropdownCategories({ data, keys }) {
         <div>
             {keys.map(key => {
                 return (
+                    <Box
+                        sx={{
+                            bgcolor: 'background.paper',
+                            pt: 2,
+                            pb: 2,
+                        }}
+                    >
                     <Accordion>
                         <AccordionSummary
-                            // expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
@@ -37,16 +48,19 @@ export default function DropdownCategories({ data, keys }) {
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
+                        <Stack spacing={2}>
                             {data[key].map((elem) => {
-                                // <p>hiii</p>
                                 return (
-                                <CapabilityCard
-                                    data={elem}
-                                />
+                                    <CapabilityCard
+                                        data={elem}
+                                    />
                                 )
                             })}
+
+                        </Stack>
                         </AccordionDetails>
                     </Accordion>
+                    </Box>
                 )
             })}
         </div>

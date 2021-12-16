@@ -4,8 +4,13 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
+/*
 
+Includes our Toolbar and Title description
+
+*/
 
 function App() {
   return (
@@ -18,6 +23,13 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
+      <Box
+          sx={{
+            bgcolor: 'background.paper',
+            pt: 8,
+            pb: 6,
+          }}
+        >
       <Container maxWidth="sm">
             <Typography
               component="h1"
@@ -28,7 +40,7 @@ function App() {
             >
               Infinitus System's
             </Typography>
-            <Typography
+            <Typography 
               component="h3"
               variant="h3"
               align="center"
@@ -41,6 +53,7 @@ function App() {
               
             </Typography>
           </Container>
+          </Box>
           <Container maxWidth="md">
             <GroupCategories />
           </Container>
